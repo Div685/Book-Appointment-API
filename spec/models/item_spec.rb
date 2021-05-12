@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Associations' do
+    it { should have_many(:appointments).dependent(:destroy) }
+    it { should have_many(:users) }
+  end
+
+  describe 'Validations' do
+    it { should validate_presence_of(:name) }
+  end
 end
