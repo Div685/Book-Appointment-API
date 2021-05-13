@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :items, except: %i[new]
   resources :users, only: %i[show create]
   resources :login, only: %i[create]
+  resources :appointments, except: %i[new]
 end
