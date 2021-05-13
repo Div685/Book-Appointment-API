@@ -17,10 +17,9 @@ class Api::V1::LoginController < ApplicationController
   end
 
   def user_data(user)
-    user_obj = {
+    {
       id: user.id,
-      username: user.username,
+      username: user.username
     }
-    user_obj
   end
 end

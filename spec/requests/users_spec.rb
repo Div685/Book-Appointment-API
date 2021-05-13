@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   # initialize test data
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
 
-  describe "Post /users" do
+  describe 'Post /users' do
     let(:valid_attributes) do
       {
         user: {
           username: 'Learn Elm',
-          password: 'Learn',
+          password: 'Learn'
         }
       }
     end
@@ -19,7 +19,7 @@ RSpec.describe "Users", type: :request do
       {
         user: {
           username: '',
-          password: 'Learn',
+          password: 'Learn'
         }
       }
     end

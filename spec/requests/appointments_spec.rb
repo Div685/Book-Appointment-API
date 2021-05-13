@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Appointments", type: :request do
+RSpec.describe 'Appointments', type: :request do
   # initialize test data
   let!(:user) { create(:user) }
   let!(:item) { create(:item) }
@@ -19,13 +19,13 @@ RSpec.describe "Appointments", type: :request do
     }
   end
 
-  def authenticated_header(user)
+  def authenticated_header(_user)
     post '/api/v1/login', params: params_value
     token = json['token']
-    { 'Authorization': "Bearer #{token}" }
+    { Authorization: "Bearer #{token}" }
   end
 
-  describe "GET /api/v1/appointments" do
+  describe 'GET /api/v1/appointments' do
     before { get '/api/v1/appointments', headers: authenticated_header(user) }
 
     it 'returns appointments size to be 10' do

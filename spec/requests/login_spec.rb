@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Logins", type: :request do
+RSpec.describe 'Logins', type: :request do
   let!(:user) { create(:user) }
 
   let(:params_value) do
@@ -12,18 +12,18 @@ RSpec.describe "Logins", type: :request do
     }
   end
 
-  def authenticated_header(user)
+  def authenticated_header(_user)
     post '/api/v1/login', params: params_value
     token = json['token']
-    { 'Authorization': "Bearer #{token}" }
+    { Authorization: "Bearer #{token}" }
   end
 
-  describe "Post /api/v1/login" do
+  describe 'Post /api/v1/login' do
     let(:valid_attributes) do
       {
         user: {
           username: user.username,
-          password: user.password,
+          password: user.password
         }
       }
     end
@@ -32,7 +32,7 @@ RSpec.describe "Logins", type: :request do
       {
         user: {
           username: '',
-          password: 'Learn',
+          password: 'Learn'
         }
       }
     end

@@ -23,12 +23,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_data(user)
-    user_obj = {
+    {
       id: user.id,
       username: user.username,
       password: user.password,
       admin: user.admin
     }
-    user_obj
   end
 end
