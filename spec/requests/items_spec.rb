@@ -20,7 +20,7 @@ RSpec.describe "Items", type: :request do
     end
   end
 
-    # Test suite for POST /todos
+    # Test suite for POST /items
   describe 'POST /items' do
     # valid payload
     let(:valid_attributes) do
@@ -69,12 +69,12 @@ RSpec.describe "Items", type: :request do
 
   end
 
-    # Test suite for GET /todos/:id
+    # Test suite for GET /items/:id
   describe 'GET /items/:id' do
     before { get "/items/#{item_id}" }
 
     context 'when the record exists' do
-      it 'returns the todo' do
+      it 'returns the item' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(item_id)
       end
