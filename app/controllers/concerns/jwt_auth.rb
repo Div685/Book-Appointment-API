@@ -14,7 +14,7 @@ module JwtAuth
   def auth_header
     return unless request.headers['Authorization']
 
-    request.headers['Authorization'].split(' ')[1]
+    request.headers['Authorization'].split[1]
   end
 
   def decode_token
