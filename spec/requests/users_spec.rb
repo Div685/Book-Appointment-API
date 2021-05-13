@@ -1,17 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  
   # initialize test data
   let!(:users) { create_list(:user, 10) }
   let(:user_id) { users.first.id }
-  
+
   describe "Post /users" do
     let(:valid_attributes) do
       {
         user: {
-          username: 'Learn Elm', 
-          password: 'Learn',  
+          username: 'Learn Elm',
+          password: 'Learn',
         }
       }
     end
@@ -19,15 +18,15 @@ RSpec.describe "Users", type: :request do
     let(:invalid_attributes) do
       {
         user: {
-          username: '', 
-          password: 'Learn',  
+          username: '',
+          password: 'Learn',
         }
       }
     end
 
     context 'when credintials are correct' do
       before { post '/api/v1/users', params: valid_attributes }
-      
+
       it 'returns status code 200' do
         expect(response).to have_http_status(201)
       end
@@ -35,7 +34,7 @@ RSpec.describe "Users", type: :request do
 
     context 'when credintials are Incorrect' do
       before { post '/api/v1/users', params: invalid_attributes }
-      
+
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
@@ -46,5 +45,4 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
-
 end

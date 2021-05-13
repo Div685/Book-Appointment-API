@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.create!(username: user_params[:username], password: user_params[:password])
-    
+
     if @user.valid?
       token = encode_token({ user_id: @user.id })
       render json: { status: :created, user: user_data(@user), token: token }, status: 201
@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :user_id )
+    params.require(:user).permit(:username, :password, :user_id)
   end
 
   def user_data(user)

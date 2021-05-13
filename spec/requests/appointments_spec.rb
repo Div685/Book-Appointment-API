@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Appointments", type: :request do
-  
   # initialize test data
   let!(:user) { create(:user) }
   let!(:item) { create(:item) }
@@ -32,7 +31,7 @@ RSpec.describe "Appointments", type: :request do
     it 'returns appointments size to be 10' do
       expect(json.size).to eq(10)
     end
-    
+
     it 'returns appointment not be empty' do
       expect(json).not_to be_empty
     end

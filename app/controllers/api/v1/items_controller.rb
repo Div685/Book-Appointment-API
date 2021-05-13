@@ -38,5 +38,4 @@ class Api::V1::ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
 end

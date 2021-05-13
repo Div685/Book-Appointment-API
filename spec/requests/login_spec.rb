@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Logins", type: :request do
-
   let!(:user) { create(:user) }
-  
+
   let(:params_value) do
     {
       user: {
@@ -20,12 +19,11 @@ RSpec.describe "Logins", type: :request do
   end
 
   describe "Post /api/v1/login" do
-
     let(:valid_attributes) do
       {
         user: {
-          username: user.username, 
-          password: user.password,  
+          username: user.username,
+          password: user.password,
         }
       }
     end
@@ -33,15 +31,15 @@ RSpec.describe "Logins", type: :request do
     let(:invalid_attributes) do
       {
         user: {
-          username: '', 
-          password: 'Learn',  
+          username: '',
+          password: 'Learn',
         }
       }
     end
 
     context 'when credintials are correct' do
       before { post '/api/v1/login', params: valid_attributes, headers: authenticated_header(user) }
-      
+
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
@@ -49,7 +47,7 @@ RSpec.describe "Logins", type: :request do
 
     context 'when credintials are Incorrect' do
       before { post '/api/v1/login', params: invalid_attributes }
-      
+
       it 'returns status code 401' do
         expect(response).to have_http_status(401)
       end

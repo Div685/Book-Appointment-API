@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Items", type: :request do
-
   # initialize test data
   let!(:user) { create(:user) }
   let!(:items) { create_list(:item, 10) }
@@ -36,15 +35,15 @@ RSpec.describe "Items", type: :request do
     end
   end
 
-    # Test suite for POST /items
+  # Test suite for POST /items
   describe 'POST /api/v1/items' do
     # valid payload
     let(:valid_attributes) do
       {
         item: {
-          name: 'Learn Elm', 
-          description: 'Learn', 
-          img: 'image'  
+          name: 'Learn Elm',
+          description: 'Learn',
+          img: 'image'
         }
       }
     end
@@ -52,8 +51,8 @@ RSpec.describe "Items", type: :request do
     let(:invalid_attributes) do
       {
         item: {
-          name: '', 
-          description: 'Foo', 
+          name: '',
+          description: 'Foo',
         }
       }
     end
@@ -82,10 +81,9 @@ RSpec.describe "Items", type: :request do
           .to match(/Validation failed: Name can't be blank/)
       end
     end
-
   end
 
-    # Test suite for GET /items/:id
+  # Test suite for GET /items/:id
   describe 'GET /api/v1/items/:id' do
     before { get "/api/v1/items/#{item_id}" }
 
@@ -106,7 +104,6 @@ RSpec.describe "Items", type: :request do
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
       end
-
     end
   end
 end

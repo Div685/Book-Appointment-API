@@ -23,5 +23,4 @@ class Api::V1::LoginController < ApplicationController
     }
     user_obj
   end
-
 end
