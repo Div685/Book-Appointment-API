@@ -56,7 +56,7 @@ RSpec.describe "Logins", type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match(/invalid User/)
+          .to match(/Invalid Password/)
       end
     end
   end

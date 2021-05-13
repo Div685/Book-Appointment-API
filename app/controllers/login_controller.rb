@@ -6,7 +6,7 @@ class LoginController < ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: { logged_in: true, user: user_data(@user), token: token }
     else
-      render json: { errors: 'invalid User' }, status: 401
+      render json: { errors: 'Invalid Password' }, status: 401
     end
   end
 
