@@ -14,12 +14,12 @@ RSpec.describe "Logins", type: :request do
   end
 
   def authenticated_header(user)
-    post '/login', params: params_value
+    post '/api/v1/login', params: params_value
     token = json['token']
     { 'Authorization': "Bearer #{token}" }
   end
 
-  describe "Post /login" do
+  describe "Post /api/v1/login" do
 
     let(:valid_attributes) do
       {
@@ -40,7 +40,7 @@ RSpec.describe "Logins", type: :request do
     end
 
     context 'when credintials are correct' do
-      before { post '/login', params: valid_attributes, headers: authenticated_header(user) }
+      before { post '/api/v1/login', params: valid_attributes, headers: authenticated_header(user) }
       
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
@@ -48,7 +48,7 @@ RSpec.describe "Logins", type: :request do
     end
 
     context 'when credintials are Incorrect' do
-      before { post '/login', params: invalid_attributes }
+      before { post '/api/v1/login', params: invalid_attributes }
       
       it 'returns status code 401' do
         expect(response).to have_http_status(401)

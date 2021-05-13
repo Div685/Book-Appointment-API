@@ -3,11 +3,27 @@ require 'rails_helper'
 RSpec.describe "Items", type: :request do
 
   # initialize test data
+  let!(:user) { create(:user) }
   let!(:items) { create_list(:item, 10) }
   let(:item_id) { items.first.id }
 
-  describe "GET /items" do
-    before { get '/items' }
+  let(:params_value) do
+    {
+      user: {
+        username: user.username,
+        password: user.password
+      }
+    }
+  end
+
+  def authenticated_header(user)
+    post '/api/v1/login', params: params_value
+    token = json['token']
+    { 'Authorization': "Bearer #{token}" }
+  end
+
+  describe "GET /api/v1/items" do
+    before { get '/api/v1/items' }
 
     it 'returns items' do
       # Note `json` is a custom helper to parse JSON responses
@@ -21,7 +37,7 @@ RSpec.describe "Items", type: :request do
   end
 
     # Test suite for POST /items
-  describe 'POST /items' do
+  describe 'POST /api/v1/items' do
     # valid payload
     let(:valid_attributes) do
       {
@@ -43,7 +59,7 @@ RSpec.describe "Items", type: :request do
     end
 
     context 'when the request is valid' do
-      before { post '/items', params: valid_attributes }
+      before { post '/api/v1/items', params: valid_attributes, headers: authenticated_header(user) }
 
       it 'creates a items' do
         expect(json['name']).to eq('Learn Elm')
@@ -55,7 +71,7 @@ RSpec.describe "Items", type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/items', params: invalid_attributes }
+      before { post '/api/v1/items', params: invalid_attributes, headers: authenticated_header(user) }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -70,8 +86,8 @@ RSpec.describe "Items", type: :request do
   end
 
     # Test suite for GET /items/:id
-  describe 'GET /items/:id' do
-    before { get "/items/#{item_id}" }
+  describe 'GET /api/v1/items/:id' do
+    before { get "/api/v1/items/#{item_id}" }
 
     context 'when the record exists' do
       it 'returns the item' do

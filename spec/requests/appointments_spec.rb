@@ -21,13 +21,13 @@ RSpec.describe "Appointments", type: :request do
   end
 
   def authenticated_header(user)
-    post '/login', params: params_value
+    post '/api/v1/login', params: params_value
     token = json['token']
     { 'Authorization': "Bearer #{token}" }
   end
 
-  describe "GET /appointments" do
-    before { get '/appointments', headers: authenticated_header(user) }
+  describe "GET /api/v1/appointments" do
+    before { get '/api/v1/appointments', headers: authenticated_header(user) }
 
     it 'returns appointments size to be 10' do
       expect(json.size).to eq(10)
@@ -42,9 +42,9 @@ RSpec.describe "Appointments", type: :request do
     end
   end
 
-  describe 'GET /appointment/:id' do
+  describe 'GET /api/v1/appointment/:id' do
     context 'when request is valid' do
-      before { get "/appointments/#{appointment_id}", headers: authenticated_header(user) }
+      before { get "/api/v1/appointments/#{appointment_id}", headers: authenticated_header(user) }
 
       it 'returns status symbol :ok' do
         expect(response).to have_http_status(200)
@@ -53,7 +53,7 @@ RSpec.describe "Appointments", type: :request do
 
     context 'when request is invalid' do
       let(:appointment_id) { 100 }
-      before { get "/appointments/#{appointment_id}", headers: authenticated_header(user) }
+      before { get "/api/v1/appointments/#{appointment_id}", headers: authenticated_header(user) }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)

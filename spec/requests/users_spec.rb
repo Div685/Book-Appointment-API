@@ -26,7 +26,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context 'when credintials are correct' do
-      before { post '/users', params: valid_attributes }
+      before { post '/api/v1/users', params: valid_attributes }
       
       it 'returns status code 200' do
         expect(response).to have_http_status(201)
@@ -34,7 +34,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context 'when credintials are Incorrect' do
-      before { post '/users', params: invalid_attributes }
+      before { post '/api/v1/users', params: invalid_attributes }
       
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
