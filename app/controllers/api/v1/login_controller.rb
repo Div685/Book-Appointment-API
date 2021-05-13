@@ -1,4 +1,4 @@
-class LoginController < ApplicationController
+class Api::V1::LoginController < ApplicationController
   def create
     @user = User.find_by(username: login_params[:username])
 

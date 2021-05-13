@@ -1,8 +1,9 @@
-class ItemsController < ApplicationController
+class Api::V1::ItemsController < ApplicationController
+  before_action :authorize_user, except: %i[index show]
   before_action :set_item, only: %i[show update destroy]
 
   def index
-    @items = Item.all
+    @items = Item.order_by_name
     render json: @items, status: 200
   end
 
