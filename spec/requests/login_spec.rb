@@ -1,17 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe "Logins", type: :request do
-  # let!(:users) { create_list(:user, 10) }
-  # let(:user_id) { users.first.id }
-  let!(:username) {'Learn'}
-  let!(:password) { 'Internet.password' }
+
+  let!(:user) { create(:user) }
   
+  let(:params_value) do
+    {
+      user: {
+        username: user.username,
+        password: user.password
+      }
+    }
+  end
+
+  def authenticated_header(user)
+    post '/login', params: params_value
+    token = json['token']
+    { 'Authorization': "Bearer #{token}" }
+  end
+
   describe "Post /login" do
+
     let(:valid_attributes) do
       {
         user: {
-          username: 'Learn', 
-          password: 'Internet.password',  
+          username: user.username, 
+          password: user.password,  
         }
       }
     end
@@ -25,13 +39,13 @@ RSpec.describe "Logins", type: :request do
       }
     end
 
-    # context 'when credintials are correct' do
-    #   before { post '/login', params: valid_attributes }
+    context 'when credintials are correct' do
+      before { post '/login', params: valid_attributes, headers: authenticated_header(user) }
       
-    #   it 'returns status code 200' do
-    #     expect(response).to have_http_status(201)
-    #   end
-    # end
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
 
     context 'when credintials are Incorrect' do
       before { post '/login', params: invalid_attributes }
