@@ -6,7 +6,7 @@ module Api
 
       def index
         @appointments = @current_user.appointments
-        render json: @appointments, status: 200
+        render json: @appointments, include: %i[item], status: 200
       end
 
       def show
