@@ -10,7 +10,7 @@ class Api::V1::LoginController < ApplicationController
     end
   end
 
-  def autoLogin
+  def auto_login
     @user = User.find(login_params[:user_id])
 
     if @user

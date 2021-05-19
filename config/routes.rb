@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :login, only: %i[create]
       resources :items, except: %i[new]
       resources :appointments, except: %i[new]
-      post 'login/autoLogin'
+      post 'login/auto_login'
     end
   end
 end
