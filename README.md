@@ -1,9 +1,8 @@
 ![Linter workflow](https://github.com/Div685/Book-Appointment-API/actions/workflows/linters.yml/badge.svg)
-![Tests workflow](https://github.com/Div685/Book-Appointment-API/actions/workflows/tests.yml/badge.svg)
 
 # Salon Appointment API built with Ruby on Rails
 
-![Screenshot](/screenshot.png)
+![Screenshot](/screencapture.png)
 
 ## About the Project
 
@@ -23,7 +22,7 @@ This API has 3 database models
 
 ## Live Demo
 
-[Live Demo Link](https://salon-appointment-api.herokuapp.com/)
+[Live Demo Link](https://salon-appointment-api.herokuapp.com/api/v1/items)
 
 
 ## Getting Started
