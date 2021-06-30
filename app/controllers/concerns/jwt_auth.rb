@@ -39,3 +39,4 @@ module JwtAuth
     logged_in_user ? true : false
   end
 end
+
