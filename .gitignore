@@ -25,3 +25,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# This was just copy past class to quickly show the file. it contains same code as JWT_auth.rb file 
+extracted_class.rb 
