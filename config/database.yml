@@ -87,3 +87,4 @@ production:
   database: salon_appointment_api_production
   username: salon_appointment_api
   password: <%= ENV['SALON_APPOINTMENT_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
