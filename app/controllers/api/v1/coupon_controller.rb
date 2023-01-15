@@ -43,5 +43,4 @@ class Api::V1::CouponController < ApplicationController
       end_at: coupon.end_at
     }
   end
-
 end
