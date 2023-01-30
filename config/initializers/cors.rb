@@ -17,7 +17,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
   # Production
   allow do
-    origins 'https://salon-appointment-33fe4.web.app/'
+    origins 'https://salon-appointments.onrender.com/'
 
     resource '*',
       headers: :any,
