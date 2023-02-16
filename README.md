@@ -22,7 +22,7 @@ This API has 3 database models
 
 ## Live Demo
 
-[Live Demo Link](https://salon-appointment-api.herokuapp.com/api/v1/items)
+[Live Demo Link](https://salonrailsapi.onrender.com/api/v1/items)
 
 
 ## Getting Started
